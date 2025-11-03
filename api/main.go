@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"strconv"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -113,7 +114,8 @@ func main() {
 		}
 	}
 
-	serverAddr := fmt.Sprintf(":%d", cfg.ServerPort)
+	serverPort_int := strconv.Atoi(cfg.ServerPort)
+	serverAddr := fmt.Sprintf(":%d", serverPort_int)
 	log.Printf("Server starting on %s", serverAddr)
 	if err := r.Run(serverAddr); err != nil {
 		log.Fatalf("Failed to start server :%v", err)
